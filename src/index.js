@@ -7,8 +7,8 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
-const ColumnModel = require("../models/Column");
-const CardModel = require("../models/Card");
+const ColumnModel = require("./models/Column");
+const CardModel = require("./models/Card");
 
 mongoose.connect(process.env.DB_CONNECT);
 

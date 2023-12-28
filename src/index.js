@@ -10,7 +10,10 @@ app.use(cors());
 const ColumnModel = require("./models/Column");
 const CardModel = require("./models/Card");
 
-mongoose.connect(process.env.DB_CONNECT);
+mongoose.connect(process.env.DB_CONNECT, {
+  user: "yomna",
+  pass: "12345678Yo",
+});
 
 app.get("/columns", async (req, res) => {
   const columns = await ColumnModel.find();

@@ -10,10 +10,13 @@ app.use(cors());
 const ColumnModel = require("./models/Column");
 const CardModel = require("./models/Card");
 
-mongoose.connect(process.env.DB_CONNECT, {
-  user: "yomna",
-  pass: "12345678Yo",
-});
+mongoose.connect(
+  "mongodb+srv://yomna:12345678Yo@cluster23429.ddszajq.mongodb.net/test",
+  {
+    user: "yomna",
+    pass: "12345678Yo",
+  }
+);
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri =
@@ -54,10 +57,10 @@ app.get("/cards", async (req, res) => {
 
 app.post("/change-cards", async (req, res) => {
   const columnId = req.body.columnId;
-    const cardId = req.body.cardId;
-    console.log(`columnId ${columnId} cardId ${cardId}`);
+  const cardId = req.body.cardId;
+  console.log(`columnId ${columnId} cardId ${cardId}`);
 
- await ColumnModel.updateMany(
+  await ColumnModel.updateMany(
     { card_id: cardId },
     { $pull: { card_id: cardId } }
   );
@@ -72,4 +75,4 @@ app.post("/change-cards", async (req, res) => {
   res.status(200).json({ message: "updated!" });
 });
 
-app.listen(3000, '0.0.0.0', () => console.log("Running on PORT 3000!"));
+app.listen(3000, "0.0.0.0", () => console.log("Running on PORT 3000!"));
